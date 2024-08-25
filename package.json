@@ -1,0 +1,27 @@
+{
+  "name": "gamdom-e2e-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "ui_tests":"npx playwright test tests/ui-tests.spec.ts --project=chromium",
+    "api_tests": "npx playwright test tests/api-tests.spec.ts"
+
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^22.4.1",
+    "allure-playwright": "^3.0.0-beta.10"
+  },
+  "dependencies": {
+    "axios": "^1.7.4",
+    "playwright": "^1.46.1",
+    "playwright-core": "^1.46.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
