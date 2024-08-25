@@ -108,9 +108,9 @@
 //
 // }
 import { Page, Locator, FrameLocator, expect } from '@playwright/test';
+import {BasePage} from "./BasePage";
 
-export class SportsBettingPage {
-    readonly page: Page;
+export class SportsBettingPage extends BasePage{
     readonly sportBettingButton: Locator;
     readonly gameCurrentlyUnavailableText: Locator;
     readonly errorOnPlaceButton: Locator;
@@ -120,7 +120,7 @@ export class SportsBettingPage {
     readonly titleName: Locator;
 
     constructor(page: Page) {
-        this.page = page;
+        super(page)
         this.sportBettingButton = page.locator('a[href="/sports"] >> text=Visit Sportbook');
         this.iframe = page.frameLocator(".sb__iframe").frameLocator("#betsyframe");
         this.gameCurrentlyUnavailableText = this.iframe.locator('div.cover>h1');

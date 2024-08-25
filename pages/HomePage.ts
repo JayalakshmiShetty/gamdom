@@ -1,7 +1,7 @@
 import { Page, Locator, FrameLocator, expect } from '@playwright/test';
+import {BasePage} from "./BasePage";
 
-export class HomePage {
-    readonly page: Page;
+export class HomePage extends BasePage{
     readonly searchInput: Locator;
     readonly noThanksButton: Locator;
     readonly sportBettingLink: Locator;
@@ -17,7 +17,7 @@ export class HomePage {
 
 
     constructor(page: Page) {
-        this.page = page;
+        super(page);
         this.searchInput = page.getByPlaceholder("Search");
         this.noThanksButton = page.getByRole('button', { name: 'No, thanks' });
         this.sportBettingLink = page.locator('text=Sport Betting');

@@ -1,14 +1,14 @@
 import { Page, Locator, expect } from '@playwright/test';
+import {BasePage} from "./BasePage";
 
-export class SignInPage {
-    readonly page: Page;
+export class SignInPage extends BasePage{
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
     readonly captcha: Locator;
 
     constructor(page: Page) {
-        this.page = page;
+        super(page)
         this.usernameInput = page.getByPlaceholder('Enter your username');
         this.passwordInput = page.getByPlaceholder('Enter your Password');
         this.loginButton = page.getByTestId('start-playing-login');
@@ -22,7 +22,8 @@ export class SignInPage {
         await this.page.waitForLoadState('networkidle');
     }
 
-    async verifyCaptchaVisible() {
-        await expect(this.captcha).toBeVisible({ timeout: 50000 });
+    async verifyCaptchaIsAvailableAndHidden() {
+        await expect(this.captcha).toBeHidden({ timeout: 50000 });
+        await expect(this.captcha).toHaveCount(1); // Ensures that there is exactly one such element
     }
 }

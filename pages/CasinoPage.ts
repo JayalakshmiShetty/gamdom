@@ -1,11 +1,10 @@
 import { Page } from '@playwright/test';
 import { join } from 'path';
+import {BasePage} from "./BasePage";
 
-export class CasinoPage {
-    private page: Page;
-
+export class CasinoPage extends BasePage{
     constructor(page: Page) {
-        this.page = page;
+        super(page);
     }
 
     // Selectors
