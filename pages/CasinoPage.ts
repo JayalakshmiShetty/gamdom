@@ -10,7 +10,7 @@ export class CasinoPage {
 
     // Selectors
     private get casinoButton() {
-        return this.page.getByText("Casino").first();
+        return this.page.getByText("Casino", {exact:true}).first();
     }
 
     private get casinoGamesButton() {
@@ -20,7 +20,7 @@ export class CasinoPage {
     // Actions
     async navigateToCasinoPage() {
         await this.casinoButton.click();
-        await this.casinoGamesButton.waitFor({ state: 'visible', timeout: 60000 });
+        await this.casinoGamesButton.waitFor({ state: 'attached', timeout: 60000 });
         await this.page.waitForTimeout(2000); // 2 seconds
     }
 

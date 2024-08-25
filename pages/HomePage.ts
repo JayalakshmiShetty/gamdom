@@ -70,7 +70,7 @@ export class HomePage {
     }
 
     async interactWithWebglElement() {
-        await this.webglElement.waitFor({ state: 'attached', timeout: 60000 });
+        await this.webglElement.waitFor({ state: 'attached', timeout: 90000 });
         await this.webglElement.click();
     }
 

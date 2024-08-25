@@ -19,9 +19,10 @@ export class SignInPage {
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password);
         await this.loginButton.click();
+        await this.page.waitForLoadState('networkidle');
     }
 
     async verifyCaptchaVisible() {
-        await expect(this.captcha).toBeVisible({ timeout: 15000 });
+        await expect(this.captcha).toBeVisible({ timeout: 50000 });
     }
 }

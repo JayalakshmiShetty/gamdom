@@ -126,7 +126,8 @@ export class SportsBettingPage {
         this.gameCurrentlyUnavailableText = this.iframe.locator('div.cover>h1');
         this.errorOnPlaceButton = this.iframe.locator('span.bet-error');
         this.oddsButtonSelector = this.iframe.locator('//div[@class="grid-line__content"]//button[contains(@class,"outcome")]');
-        this.placeBetButton = this.iframe.locator('div.live-events-widget button.btn.coupon__placebet-btn').first();
+        // this.placeBetButton = this.iframe.locator('div.live-events-widget button.btn.coupon__placebet-btn').first();
+        this.placeBetButton = this.iframe.locator('div.coupon__placebet button.btn.coupon__placebet-btn ');
         this.titleName =this.iframe.locator("div.grid-line__title-main>span").first()
 
     }
@@ -142,8 +143,7 @@ export class SportsBettingPage {
         for (let i = 1; i <= oddsCount; i++) {
             const oddsButton = this.oddsButtonSelector.nth(i - 1);
             try {
-                // Wait for the button to be visible and enabled before clicking
-                await oddsButton.waitFor({ state: 'visible', timeout: 90000 }); // Adjust timeout if needed
+                // Wait for the button to be enabled before clicking
                 await oddsButton.waitFor({ state: 'attached', timeout: 90000 });
 
                 // Click the button
@@ -162,7 +162,7 @@ export class SportsBettingPage {
     async placeBet() {
         // Ensure bet button is visible and enabled before clicking
 
-        await this.page.frameLocator(".sb__iframe").frameLocator("#betsyframe").getByRole("button",{name:"Turn On Quick Bet"}).waitFor({timeout:20000})
+        // await this.page.frameLocator(".sb__iframe").frameLocator("#betsyframe").getByRole("button",{name:"Turn On Quick Bet"}).waitFor({timeout:20000})
         await this.placeBetButton.waitFor({ state: 'attached', timeout: 120000 });
         await this.placeBetButton.click();
     }

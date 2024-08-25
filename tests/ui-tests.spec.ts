@@ -21,6 +21,7 @@ test.beforeEach(async ({ page, browser }) => {
 test('Verify Search functionality works', async ({page}) => {
     const homePage = new HomePage(page);
     await homePage.searchForGame('Rip City');
+    await homePage.dismissPopup();
     await homePage.selectFirstResult();
     await homePage.interactWithWebglElement();
     await homePage.verifyGameName('RIP City');
@@ -32,10 +33,8 @@ test('Should prevent bet placement while logged out', async ({ page }) => {
     const homePage = new HomePage(page);
     const sportsPage = new SportsBettingPage(page);
     await sportsPage.openSportBetting();
-    // await homePage.dismissPopup()
-    console.log("game is>>>>>>>++++++++++"+await sportsPage.isGameCurrentlyUnavailable())
     if (!await sportsPage.isGameCurrentlyUnavailable()) {
-        // await homePage.dismissPopup()
+        await homePage.dismissPopup()
         await sportsPage.selectOddsBasedOnOddCount(oddsCount);
         await sportsPage.placeBet()
         await sportsPage.verifyErrorOnPlaceBetButton("Error")
@@ -52,6 +51,7 @@ test('Verify Captcha is shown on SignIn', async ({ page }) => {
     const signInPage = new SignInPage(page);
     await homePage.clickOnSignInButton()
     await signInPage.signIn('japoy86518', 'J2y2L@1990');
+    await homePage.dismissPopup()
     await signInPage.verifyCaptchaVisible();
 
 });
