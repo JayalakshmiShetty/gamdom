@@ -18,10 +18,10 @@ export class HomePage {
 
     constructor(page: Page) {
         this.page = page;
-        this.searchInput = page.locator("input[placeholder^='Search']");
+        this.searchInput = page.getByPlaceholder("Search");
         this.noThanksButton = page.getByRole('button', { name: 'No, thanks' });
         this.sportBettingLink = page.locator('text=Sport Betting');
-        this.casinoLink = page.locator('text=Casino');
+        this.casinoLink = page.getByText('Casino',{exact:true});
         this.firstResult = page.locator("li[class^='DropdownItem-styled']").first();
         this.iframe = page.frameLocator('#router-container iframe');
         this.webglElement = this.iframe.locator('#webgl');

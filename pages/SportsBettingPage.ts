@@ -122,7 +122,7 @@ export class SportsBettingPage {
     constructor(page: Page) {
         this.page = page;
         this.sportBettingButton = page.locator('a[href="/sports"] >> text=Visit Sportbook');
-        this.iframe = page.frameLocator('div#betsyGameFrame iframe');
+        this.iframe = page.frameLocator(".sb__iframe").frameLocator("#betsyframe");
         this.gameCurrentlyUnavailableText = this.iframe.locator('div.cover>h1');
         this.errorOnPlaceButton = this.iframe.locator('span.bet-error');
         this.oddsButtonSelector = this.iframe.locator('//div[@class="grid-line__content"]//button[contains(@class,"outcome")]');
@@ -161,8 +161,8 @@ export class SportsBettingPage {
 
     async placeBet() {
         // Ensure bet button is visible and enabled before clicking
-        await this.titleName.waitFor({ state: 'attached', timeout: 120000 });
 
+        await this.page.frameLocator(".sb__iframe").frameLocator("#betsyframe").getByRole("button",{name:"Turn On Quick Bet"}).waitFor({timeout:20000})
         await this.placeBetButton.waitFor({ state: 'attached', timeout: 120000 });
         await this.placeBetButton.click();
     }
