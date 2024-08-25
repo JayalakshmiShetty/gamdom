@@ -53,7 +53,7 @@ export class HomePage {
     }
 
     async searchForGame(query: string) {
-        await this.searchInput.fill(query);
+        await this.searchInput.pressSequentially(query, {delay:100});
         await this.searchInput.click();
     }
 
