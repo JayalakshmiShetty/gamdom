@@ -126,8 +126,8 @@ export class SportsBettingPage {
         this.gameCurrentlyUnavailableText = this.iframe.locator('div.cover>h1');
         this.errorOnPlaceButton = this.iframe.locator('span.bet-error');
         this.oddsButtonSelector = this.iframe.locator('//div[@class="grid-line__content"]//button[contains(@class,"outcome")]');
-        this.placeBetButton = this.iframe.locator('div.live-events-widget button.btn.coupon__placebet-btn');
-        this.titleName =this.iframe.locator("div.grid-line__title-main>span")
+        this.placeBetButton = this.iframe.locator('div.live-events-widget button.btn.coupon__placebet-btn').first();
+        this.titleName =this.iframe.locator("div.grid-line__title-main>span").first()
 
     }
 

@@ -5,8 +5,6 @@
   "scripts": {
     "ui_tests":"npx playwright test tests/ui-tests.spec.ts --project=chromium",
     "api_tests": "npx playwright test tests/api-tests.spec.ts"
-
-
   },
   "keywords": [],
   "author": "",
