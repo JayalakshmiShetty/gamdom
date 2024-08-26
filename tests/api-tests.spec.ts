@@ -1,6 +1,13 @@
-
 import { test, request, expect } from '@playwright/test';
 import { JiraEndpoints, HTTPHeaders, IssueData } from '../testData/api-data';
+import {
+    getRequest,
+    postRequest,
+    putRequest,
+    deleteRequest,
+    assertStatusCode,
+    assertFieldMatch
+} from '../utils/api-utils';  // Import your utility functions
 
 // Helper function to build headers object from enums
 const buildHeaders = () => ({
@@ -14,32 +21,28 @@ const buildHeaders = () => ({
 const parseJson = (json: string): object => JSON.parse(json);
 
 test.describe('Jira Issue Management', () => {
-    let issueId: string | undefined, response, key, self;
+    let issueId: string | undefined;
+    let key: string | undefined;
+    let self: string | undefined;
     const initialData = JSON.parse(IssueData.INITIAL);
-
 
     test.beforeAll(async ({ request }) => {
         // Create a new issue
-        response = await request.post(JiraEndpoints.BASE_URL, {
-            headers: buildHeaders(),
-            data: initialData
-        });
+        const response = await postRequest(request, JiraEndpoints.BASE_URL, initialData, buildHeaders());
         const responseBody = await response.json();
 
-        expect(response.status()).toBe(201);
+        assertStatusCode(response, 201, responseBody);  // Assert status code
         issueId = responseBody.id;
-        key=responseBody.key;
-        self=responseBody.self;
+        key = responseBody.key;
+        self = responseBody.self;
     });
 
-    test('should verify  created Jira Issue', async ({ }) => {
+    test('should verify created Jira Issue', async () => {
         // Validate the creation response
-        expect(response.status()).toBe(201);
         expect(issueId).toBeDefined();
         expect(key).toBeDefined();
         expect(self).toMatch(new RegExp(`/${issueId}$`));
     });
-
 
     test('should verify retrieved issue', async ({ request }) => {
         if (!issueId) {
@@ -47,19 +50,14 @@ test.describe('Jira Issue Management', () => {
         }
 
         const JIRA_URL = `${JiraEndpoints.BASE_URL}/${issueId}`;
-
-        // Fetch the issue to verify its existence
-        const response = await request.get(JIRA_URL, {
-            headers: buildHeaders()
-        });
+        const response = await getRequest(request, { url: JIRA_URL, headers: buildHeaders() });
         const responseBody = await response.json();
 
-        // Assert the issue details
-        expect(response.status()).toBe(200);
-        expect(responseBody.id).toBe(issueId);
-        expect(responseBody.fields.summary).toBe(initialData.fields.summary);
-        expect(responseBody.fields.description).toBe(initialData.fields.description);
-        expect(responseBody.fields.issuetype.name).toBe('Task');
+        assertStatusCode(response, 200, responseBody);  // Assert status code
+        assertFieldMatch(responseBody, 'id', issueId);  // Assert field match
+        assertFieldMatch(responseBody, 'fields.summary', initialData.fields.summary);
+        assertFieldMatch(responseBody, 'fields.description', initialData.fields.description);
+        assertFieldMatch(responseBody, 'fields.issuetype.name', 'Task');
     });
 
     test('should verify update issue', async ({ request }) => {
@@ -68,23 +66,18 @@ test.describe('Jira Issue Management', () => {
         }
 
         const JIRA_URL = `${JiraEndpoints.BASE_URL}/${issueId}`;
+        const response = await putRequest(request, { url: JIRA_URL, data: parseJson(IssueData.UPDATED), headers: buildHeaders() });
 
-        const response = await request.put(JIRA_URL, {
-            headers: buildHeaders(),
-            data: parseJson(IssueData.UPDATED)
-        });
-        expect(response.status()).toBe(204); // Expecting no content on successful update
+        assertStatusCode(response, 204, {});  // Assert status code (204 No Content)
 
         // Optional: Verify the update by fetching the issue again
-        const verifyResponse = await request.get(JIRA_URL, {
-            headers: buildHeaders()
-        });
+        const verifyResponse = await getRequest(request, { url: JIRA_URL, headers: buildHeaders() });
         const verifyResponseBody = await verifyResponse.json();
         const updatedData = JSON.parse(IssueData.UPDATED);
 
-        expect(verifyResponse.status()).toBe(200);
-        expect(verifyResponseBody.fields.summary.trim()).toBe(updatedData.fields.summary);
-        expect(verifyResponseBody.fields.description).toBe(updatedData.fields.description);
+        assertStatusCode(verifyResponse, 200, verifyResponseBody);  // Assert status code
+        assertFieldMatch(verifyResponseBody, 'fields.summary', updatedData.fields.summary);
+        assertFieldMatch(verifyResponseBody, 'fields.description', updatedData.fields.description);
     });
 
     test('should verify deleted issue', async ({ request }) => {
@@ -93,50 +86,41 @@ test.describe('Jira Issue Management', () => {
         }
 
         const JIRA_URL = `${JiraEndpoints.BASE_URL}/${issueId}`;
+        const response = await deleteRequest(request, { url: JIRA_URL, headers: buildHeaders() });
 
-        const response = await request.delete(JIRA_URL, {
-            headers: buildHeaders()
-        });
-        expect(response.status()).toBe(204); // Expecting no content on successful delete
+        assertStatusCode(response, 204, {});  // Assert status code (204 No Content)
 
         // Verify the issue has been deleted
-        const verifyResponse = await request.get(JIRA_URL, {
-            headers: buildHeaders()
-        });
-        expect(verifyResponse.status()).toBe(404); // Issue should no longer exist
+        const verifyResponse = await getRequest(request, { url: JIRA_URL, headers: buildHeaders() });
+        assertStatusCode(verifyResponse, 404, {});  // Assert status code (404 Not Found)
     });
 
     test('should add and verify a comment to the Jira issue', async ({ request }) => {
+        if (!issueId) {
+            throw new Error('issueId is not defined. Ensure `beforeAll` setup is run.');
+        }
+
         // Add a comment to the issue
         const COMMENT_URL = `${JiraEndpoints.BASE_URL}/${issueId}/comment`;
-        const postResponse = await request.post(COMMENT_URL, {
-            headers: buildHeaders(),
-            data: parseJson(IssueData.INITIAL_COMMENT)
-        });
+        const postResponse = await postRequest(request, COMMENT_URL, parseJson(IssueData.INITIAL_COMMENT), buildHeaders());
         const postResponseBody = await postResponse.json();
 
-        // Validate the comment creation response
-        expect(postResponse.status()).toBe(201); // Assuming a successful comment creation returns HTTP 201
-        expect(postResponseBody).toBeDefined();
-        expect(postResponseBody.id).toBeDefined(); // Ensure comment ID is present
+        assertStatusCode(postResponse, 201, postResponseBody);  // Assert status code
+        expect(postResponseBody.id).toBeDefined();  // Ensure comment ID is present
 
         // Fetch the comment to verify its content
         const commentId = postResponseBody.id;
         const fetchCommentUrl = `${JiraEndpoints.BASE_URL}/${issueId}/comment/${commentId}`;
-        const getResponse = await request.get(fetchCommentUrl, {
-            headers: buildHeaders()
-        });
+        const getResponse = await getRequest(request, { url: fetchCommentUrl, headers: buildHeaders() });
         const getResponseBody = await getResponse.json();
 
-        // Validate the fetched comment
-        expect(getResponse.status()).toBe(200);
+        assertStatusCode(getResponse, 200, getResponseBody);  // Assert status code
 
         // Ensure we correctly access the body of the comment
         const receivedCommentBody = getResponseBody.body;
         const expectedCommentBody = JSON.parse(IssueData.INITIAL_COMMENT).body;
 
         // Check that the comment body matches the expected value
-        expect(receivedCommentBody.trim()).toBe(expectedCommentBody.trim());
+        assertFieldMatch(getResponseBody, 'body', expectedCommentBody);
     });
-
 });

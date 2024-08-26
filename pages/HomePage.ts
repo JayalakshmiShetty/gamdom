@@ -75,7 +75,7 @@ export class HomePage extends BasePage{
     }
 
     async verifyGameName(expectedName: string) {
-        await expect(this.gameNameOverlay).toHaveText(expectedName);
+        await expect(this.gameNameOverlay,{message: `Actual (RIP City) and Expected (${expectedName}) don't match.`}).toHaveText(expectedName);
     }
 
     async clickOnSignInButton() {
@@ -85,8 +85,3 @@ export class HomePage extends BasePage{
 
 
 }
-
-
-
- 
-

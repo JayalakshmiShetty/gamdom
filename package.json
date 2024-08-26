@@ -3,8 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "ui_tests":"npx playwright test tests/ui-tests.spec.ts",
-    "api_tests": "npx playwright test tests/api-tests.spec.ts"
+    "ui_tests": "npx playwright test --project=chrome tests/ui-tests.spec.ts",
+    "api_tests": "npx playwright test --project=api tests/api-tests.spec.ts",
+    "all_tests": "npx playwright test",
+    "all_tests_ui": "npx playwright test --ui",
+    "all_tests_headed": "npx playwright test --headed",
+    "ui_chromium": "npx playwright test --project=chromium",
+    "ui_headed_chromium": "npx playwright test --project=chromium --headed",
+    "ui_firefox": "npx playwright test --project=firefox",
+    "ui_headed_firefox": "npx playwright test --project=firefox --headed",
+    "test:ui:debug": "PWDEBUG=1 npx playwright test",
+    "test:ui:generate-report": "npx playwright show-report playwright-report"
   },
   "keywords": [],
   "author": "",

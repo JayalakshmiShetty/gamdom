@@ -17,7 +17,7 @@ export enum HTTPHeaders {
 export enum IssueData {
     INITIAL = '{"fields":{"project":{"key":"QA"},"summary":"Switching market on sports page displays irrelevant market","description":"When attempting to switch markets on the sports page, the system displays a market that does not correspond to the selected option.","issuetype":{"name":"Task"}}}',
     UPDATED = '{"fields":{"summary":"Updated market switch issue","description":"Error is shown on switching the market on sports page."}}',
-    INITIAL_COMMENT = '{"body":"Market name disapppears on switching markets on sports page. "}',
+    INITIAL_COMMENT = '{"body":"Market name disapppears on switching markets on sports page."}',
     UPDATED_COMMENT = '{"body":"The sports page displays the wrong market when you switch between markets."}'
 
 }

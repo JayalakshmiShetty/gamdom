@@ -1,15 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
- * See https://playwright.dev/docs/test-configuration.
+ * Test configuration.
  */
 export default defineConfig({
   timeout: 100000,
@@ -21,7 +15,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 4 :undefined,
+  workers: process.env.CI ? 2 :undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -43,32 +37,33 @@ export default defineConfig({
     timezoneId: 'Europe/Paris',
   },
 
-  /* Configure projects for major browsers */
+  /* Project Configuration*/
   projects: [
-    // {
-    //   name: 'chromium',
-    //   use: { ...devices['Desktop Chrome'] },
-    // },
-
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
-
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
     {
-      name: 'Google Chrome',
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+
+    {
+      name: 'chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+    },
+    {
+      name: 'api',
+      use: {
+        baseURL: process.env.API_BASE_URL || 'http://localhost:3000',
+        trace: 'on-first-retry', // Trace for debugging
+        headless: true, // No browser UI needed
+        video: 'off', // Video recording not needed
+        viewport: null, // Not needed for API tests
+        ignoreHTTPSErrors: true, // If testing over HTTPS
+      },
     },
   ],
 
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });
