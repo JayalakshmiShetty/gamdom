@@ -93,5 +93,79 @@ Please find successful test videos and AllRuns Screenshot under following direct
 
 
 ## Exploratory testing Key Areas
-1. 
+1. **Bet Placement and Wagering Functionality**
+Ensure users can place bets on both sports and casino games without issues.
 
+      * Sports Page:
+  
+         - Place a bet on various sports events.
+  
+         - Verify the odds are correctly updated and reflect the user's selection.
+  
+         - Check the bet slip functionality to ensure users can view, modify, and confirm their bets.
+  
+      * Casino Page:
+        
+         - Place wagers on different casino games (e.g., slots, table games).
+        
+         - Verify that game results and payouts are calculated correctly.
+        
+         - Ensure users can see their bet history and transaction records.
+
+3. **User Account and Authentication**
+Validate that users can securely log in, register, and manage their accounts.
+      
+      * Login and Registration:
+
+          - Test login with valid and invalid credentials.
+   
+          - Check the registration process for new users, including email verification and password strength requirements.
+   
+      * Account Management:
+   
+          - Verify users can update their profile information, such as email and password.
+   
+          - Test account recovery options (e.g., password reset).
+
+4. **Payment and Withdrawal Processing**
+Ensure users can deposit funds, withdraw money, and view transaction history.
+      
+      * Deposits:
+   
+          - Test various payment methods (credit/debit cards, e-wallets, etc.) to ensure deposits are processed correctly.
+      
+      * Withdrawals:
+         
+          - Verify that withdrawal requests are handled promptly and accurately.
+          
+          - Check that withdrawal methods are functioning and that users receive their funds within the promised timeframe.
+
+5. **Game Functionality and User Experience**
+Verify that all casino games and sports betting features are functioning correctly and provide a good user experience.
+
+      * Casino Games:
+   
+          - Test various games for functionality, including slots, table games, and live dealer options.
+   
+          - Ensure that games load correctly, respond to user inputs, and provide accurate results.
+   
+      * Sports Betting:
+   
+          - Check the display and updating of sports events, odds, and betting options.
+   
+          - Verify that bet placements and odds calculations are accurate.
+
+6. **Customer Support Integration**
+Ensure that customer support is accessible and functional.
+
+      * Live Chat:
+   
+          - Test the live chat feature for responsiveness and effectiveness in resolving user queries.
+   
+      * Contact Forms:
+   
+          - Verify that contact forms are working and submissions are received by the support team.
+   
+      * Help Resources:
+   
+          - Check the availability and accuracy of help resources, such as FAQs and user guides.
