@@ -6,6 +6,7 @@ export class SignInPage extends BasePage{
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
     readonly captcha: Locator;
+    readonly rememberMeCheckbox: Locator
 
     constructor(page: Page) {
         super(page)
@@ -13,11 +14,15 @@ export class SignInPage extends BasePage{
         this.passwordInput = page.getByPlaceholder('Enter your Password');
         this.loginButton = page.getByTestId('start-playing-login');
         this.captcha = page.locator('#turnstile-login');
+        this.rememberMeCheckbox = this.page.getByTestId('remember-me-login');
     }
 
-    async signIn(username: string, password: string) {
+    async signIn(username: string, password: string, rememberMe = false) {
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password);
+        if (rememberMe){
+            await this.rememberMeCheckbox.check();
+        }
         await this.loginButton.click();
         await this.page.waitForLoadState('networkidle');
     }
