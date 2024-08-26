@@ -42,7 +42,7 @@ Ensure that the following software is installed:
  There are various test execution options in the package.json file. Here are some examples:
    * Run UI tests with a user interface: `npm run all_tests_ui`
    * Run UI tests using Chrome: `npm run ui_tests`
-   * Run UI tests using Firefox: 'npm run ui_firefox'
+   * Run UI tests using Firefox: `npm run ui_firefox`
    * Run UI tests using Firefox in headed mode: `npm run ui_headed_firefox`
    * Run UI tests using Firefox: `npm run ui_chromium`
    * Run UI tests using Firefox in headed mode: `npm run ui_headed_chromium`
@@ -72,7 +72,7 @@ You can review the outcomes of these workflows in the "Actions" tab of the GitHu
 Please find successful test videos and AllRuns Screenshot under following directory.
 1. **Successful Execution Report** 
 ![SUCCESS](./successful-test-results/AllRuns.png)`
-2. **UI Failure Report **
+2. **UI Failure Report**
 ![UI Failure](https://github.com/user-attachments/assets/f740b4bf-5128-4917-a2fa-937f411e8be2)
 3. **API Failure Report**
 ![API Failure](https://github.com/user-attachments/assets/284bf354-926b-4cc9-9cea-068ad5014054)
