@@ -4,4 +4,4 @@ node_modules/
 /playwright/.cache/
 /.idea/
 /package.json/
-/playwright-report/
+playwright-report/

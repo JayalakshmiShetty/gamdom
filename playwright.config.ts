@@ -32,7 +32,15 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     screenshot: "only-on-failure",
-    video: "on"
+    video: "on",
+    // Context geolocation
+    geolocation: { latitude: 35.9375, longitude: 14.3754 },
+    permissions: ['geolocation'],
+    // Emulates the user locale.
+    locale: 'en-GB',
+
+    // Emulates the user timezone.
+    timezoneId: 'Europe/Paris',
   },
 
   /* Configure projects for major browsers */
