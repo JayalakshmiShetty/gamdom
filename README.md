@@ -30,4 +30,12 @@ Ensure that the following software is installed:
 ## Successful Tests Screenshot and Videos  
 
 Please find successful test videos and AllRuns Screenshot under following directory.
-https://github.com/JayalakshmiShetty/gamdom/tree/master/successful-test-results
+1. Successful Execution Report 
+![SUCCESS](./successful-test-results/AllRuns.png)`
+2. UI Failure Report 
+![FAILURE](./successful-test-results/AllRuns.png)`
+3. API Failure Report
+4. Successful Execution Report 
+![FAILURE](./successful-test-results/AllRuns.png)`
+5. Successful Test Videos
+
