@@ -27,7 +27,7 @@ Ensure that the following software is installed:
    ```bash
    git clone https://github.com/your-username/gamdom-e2e-project.git
 
-## Successful Tests Screenshot and Vidoes  
+## Successful Tests Screenshot and Videos  
 
 Please find successful test videos and AllRuns Screenshot under following directory.
 https://github.com/JayalakshmiShetty/gamdom/tree/master/successful-test-results
