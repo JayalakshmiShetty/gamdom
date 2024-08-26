@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains end-to-end (E2E) tests for the Gamdom platform using Playwright and TypeScript. The tests aim to validate critical functionalities of the web application, ensuring stability and performance.
+This repository contains end-to-end (E2E) tests for the Gamdom platform using Playwright and TypeScript. The tests aim to validate critical functionalities of the web application, ensuring stability and performance. 
 
 ## Project Structure
 
@@ -26,3 +26,8 @@ Ensure that the following software is installed:
 
    ```bash
    git clone https://github.com/your-username/gamdom-e2e-project.git
+
+## Successful Tests Screenshot and Videos  
+
+Please find successful test videos and AllRuns Screenshot under following directory.
+https://github.com/JayalakshmiShetty/gamdom/tree/master/successful-test-results
