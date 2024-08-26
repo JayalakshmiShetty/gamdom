@@ -169,3 +169,20 @@ Ensure that customer support is accessible and functional.
       * Help Resources:
    
           - Check the availability and accuracy of help resources, such as FAQs and user guides.
+       
+            
+## Bug found while testing
+1. **Bet Placement and Wagering Functionality**
+   Steps to Reproduce:
+      1. Navigate to "https://gamdom.com/sports" Sports page
+      2. Click on any odds on sports page to have selection in betslip.
+      3. Copy betting code
+      4. Paste and open the copied bet code in a new incognito window.
+
+**Actual Result**:
+
+The Casino page is displayed instead of the Coupon page.
+   
+**Expected Result**:
+
+The Coupon page should be displayed upon opening the bet code in incognito mode.
