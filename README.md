@@ -172,7 +172,7 @@ Ensure that customer support is accessible and functional.
        
             
 ## Bug found while testing
-1. **Bet Placement and Wagering Functionality**
+1. **Casino sharebet link is opned instead of Sports share bet link on sharing sports sharebet link**
    Steps to Reproduce:
       1. Navigate to "https://gamdom.com/sports" Sports page
       2. Click on any odds on sports page to have selection in betslip.
@@ -180,9 +180,12 @@ Ensure that customer support is accessible and functional.
       4. Paste and open the copied bet code in a new incognito window.
 
 **Actual Result**:
-
-The Casino page is displayed instead of the Coupon page.
+The link opens the casino page with a share bet code, such as: https://gamdom.com/casino?shareBet=wuoII1E0. Instead of displaying the Sports bet coupon page, the Casino Sports page is shown.
    
 **Expected Result**:
+The Sports bet coupon page should be displayed when opening the sports bet code link in incognito mode.
 
-The Coupon page should be displayed upon opening the bet code in incognito mode.
+
+**Bug Video:**
+
+![Casino sharebet link is opned instead of Sports share bet link](https://github.com/user-attachments/assets/6c96bafb-f566-4b7a-ab2e-47b7f327dc16)
