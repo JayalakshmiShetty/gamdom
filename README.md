@@ -12,9 +12,7 @@ This repository contains end-to-end (E2E) tests for the Gamdom platform using Pl
 - **`pages/`**: Contains page object models representing different pages of the application.
 - **`utils/`**: Includes utility functions and helpers used across the test suite.
 - **`playwright.config.ts`**: Configuration file for Playwright.
-- **`tsconfig.json`**: TypeScript configuration file.
 - **`package.json`**: Contains project dependencies and scripts.
-
 
 ## Prerequisites
 
@@ -82,11 +80,11 @@ You can review the outcomes of these workflows in the "Actions" tab of the GitHu
 ## Successful Tests Screenshot 
 
 Please find successful test videos and AllRuns Screenshot under following directory.
-1. **Successful Execution Report** 
-![SUCCESS](./successful-test-results/AllRuns.png)`
-2. **UI Failure Report**
+1. **Successful Execution Report**
+![SUCCESS](./sample-test-results/AllRuns.png)`
+3. **UI Failure Report**
 ![UI Failure](https://github.com/user-attachments/assets/f740b4bf-5128-4917-a2fa-937f411e8be2)
-3. **API Failure Report**
+4. **API Failure Report**
 ![API Failure](https://github.com/user-attachments/assets/284bf354-926b-4cc9-9cea-068ad5014054)
 
 ## Successful Test Videos  
