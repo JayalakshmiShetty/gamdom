@@ -52,6 +52,18 @@ Ensure that the following software is installed:
 ## Reporters
 In `playwright.config.ts`, you can specify the type of reporter you want to use for your Playwright tests. You can choose from a variety of built-in reporters or even use a custom reporter. 
 
+***Downloading Artifact Reports From GitHub Actions***
+
+- **Navigate to the GitHub repository**: Open your web browser and go to the GitHub repository.
+- **Click on the "Actions" tab**: Find this tab at the top of the repository page.
+- **Locate the desired run**: Browse the list of workflow runs to find the one you need, identified by names, statuses, and timestamps.
+- **Open the run details**: Click on the specific run to view detailed information.
+- **Find the "Artifacts" section**: Scroll down to this section to see the list of artifacts generated during the run.
+- **Download the artifact**: Click on the artifact you want to download. It will typically be a `.zip` file.
+- **Save and extract**: Save the downloaded file to your local machine, then extract it if needed to view the reports or data.
+
+![Artifact](https://github.com/user-attachments/assets/e8422477-acbd-4ca8-b4b0-ef83059dbfbd)
+
 ## GitHub Actions
 This project leverages GitHub Actions for continuous integration. The workflow definitions for both API and UI tests are located in the .github/workflows directory, with specific files for each type:
   
@@ -189,3 +201,4 @@ The Sports bet coupon page should be displayed when opening the sports bet code 
 **Bug Video:**
 
 ![Casino sharebet link is opned instead of Sports share bet link](https://github.com/user-attachments/assets/6c96bafb-f566-4b7a-ab2e-47b7f327dc16)
+
