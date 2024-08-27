@@ -1,23 +1,5 @@
 import {Page, Locator, expect} from '@playwright/test';
 
-/**
- * Performs an action on a locator identified by a CSS selector.
- *
- * @param page - The Playwright Page object.
- * @param selector - The CSS selector for the element.
- * @param action - An async function to perform on the locator.
- */
-export async function handleLocator(
-    page: Page,
-    selector: string,
-    action: (locator: Locator) => Promise<void>
-): Promise<void> {
-    // Create a locator instance from the selector
-    const locator = page.locator(selector);
-
-    // Perform the action on the locator
-    await action(locator);
-}
 
 /**
  * Clicks an element identified by a selector on a given page.
@@ -34,27 +16,6 @@ export async function clickElement(page: Page, locator: string): Promise<void> {
     } catch (error) {
         // Throw an error if the click operation fails
         throw new Error(`Failed to click the element with locator '${locator}': ${error.message}`);
-    }
-}
-
-/**
- * Waits for an element to be attached to the DOM.
- *
- * @param {Page} page - The Playwright Page object.
- * @param {string} locator - The CSS selector for the element to wait for.
- * @param {number} timeout - The maximum time to wait in milliseconds.
- * @throws {Error} Throws an error if the wait operation times out.
- */
-export async function waitForElementToBeAttached(page: Page, locator: string, timeout: number = 60000): Promise<void> {
-    try {
-        // Get the element using the locator
-        const element: Locator = page.locator(locator);
-
-        // Wait for the element to be attached to the DOM
-        await element.waitFor({ state: 'attached', timeout });
-    } catch (error) {
-        // Throw an error if the wait operation fails
-        throw new Error(`Failed to wait for the element with locator '${locator}' to be attached: ${error.message}`);
     }
 }
 

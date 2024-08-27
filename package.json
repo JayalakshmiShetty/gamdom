@@ -5,9 +5,7 @@
   "scripts": {
     "ui_tests": "npx playwright test --project=chrome tests/ui-tests.spec.ts",
     "api_tests": "npx playwright test --project=api tests/api-tests.spec.ts",
-    "all_tests": "npx playwright test",
     "all_tests_ui": "npx playwright test --ui",
-    "all_tests_headed": "npx playwright test --headed",
     "ui_chromium": "npx playwright test --project=chromium",
     "ui_headed_chromium": "npx playwright test --project=chromium --headed",
     "ui_firefox": "npx playwright test --project=firefox",
@@ -16,7 +14,7 @@
     "test:ui:generate-report": "npx playwright show-report playwright-report"
   },
   "keywords": [],
-  "author": "",
+  "author": "laxmi.mite@gmail.com",
   "license": "ISC",
   "description": "",
   "devDependencies": {

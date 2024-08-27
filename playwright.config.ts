@@ -61,7 +61,6 @@ export default defineConfig({
         headless: true, // No browser UI needed
         video: 'off', // Video recording not needed
         viewport: null, // Not needed for API tests
-        ignoreHTTPSErrors: true, // If testing over HTTPS
       },
     },
   ],

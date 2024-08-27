@@ -1,7 +1,5 @@
-
 import { Page, Locator, FrameLocator } from '@playwright/test';
 import {
-    clickElement,
     waitForTimeout,
     assertElementText
 } from '../utils/ui-utils';
@@ -27,9 +25,6 @@ export class SportsBettingPage  extends BasePage{
         this.titleName = this.iframe.locator("div.grid-line__title-main>span").first();
     }
 
-    async openSportBetting() {
-        await clickElement(this.page, 'a[href="/sports"] >> text=Visit Sportbook');
-    }
 
     async selectOddsBasedOnOddCount(oddsCount: number) {
         await waitForTimeout(this.page, 2000);
@@ -39,7 +34,6 @@ export class SportsBettingPage  extends BasePage{
             try {
                 await oddsButton.waitFor({ state: 'attached', timeout: 90000 });
                 await oddsButton.click();
-                await waitForTimeout(this.page, 2000);
             } catch (error) {
                 console.error(`Failed to click the odds button at position ${i}:`, error);
                 throw error; // Rethrow the error to fail the test

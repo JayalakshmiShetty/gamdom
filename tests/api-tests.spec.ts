@@ -1,4 +1,4 @@
-import { test, request, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { JiraEndpoints, HTTPHeaders, IssueData } from '../testData/api-data';
 import {
     getRequest,
@@ -117,7 +117,6 @@ test.describe('Jira Issue Management', () => {
         assertStatusCode(getResponse, 200, getResponseBody);  // Assert status code
 
         // Ensure we correctly access the body of the comment
-        const receivedCommentBody = getResponseBody.body;
         const expectedCommentBody = JSON.parse(IssueData.INITIAL_COMMENT).body;
 
         // Check that the comment body matches the expected value
