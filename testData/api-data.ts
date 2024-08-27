@@ -1,4 +1,3 @@
-// test-data.ts
 
 // Enums for simple constants
 export enum JiraEndpoints {

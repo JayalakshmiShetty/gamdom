@@ -189,3 +189,44 @@ export async function assertElementCount(element: Locator, count: number): Promi
         throw new Error(`Failed to assert that the element count is ${count}: ${error.message}`);
     }
 }
+
+/**
+ * Waits for the page to reach the 'load' state, indicating that the page has fully loaded.
+ *
+ * @param {Page} page - The Playwright Page object.
+ * @throws {Error} Throws an error if waiting for the 'load' state fails.
+ */
+export async function waitForPageLoad(page: Page): Promise<void> {
+    try {
+        // Wait for the page to reach the 'load' state
+        await page.waitForLoadState('load');
+    } catch (error) {
+        // Throw an error if waiting for the 'load' state fails
+        throw new Error(`Failed to wait for the page to reach the 'load' state: ${error.message}`);
+    }
+}
+
+/**
+ * @summary The method waits until the element is not present. That is, it checks if the element is detached from the DOM.
+ *
+ * @param {Page} page - The Playwright Page object.
+ * @param {Locator} element - The Playwright Locator object for the element.
+ * @param {number} [timeout=30000] - The maximum amount of time to wait for the element to be detached from the DOM. Optional parameter.
+ * @throws {Error} Throws an error if the element is still present after the timeout period.
+ *
+ * @author Jayalakshmi <laxmi.mite@gmail.com>
+ */
+export async function waitForElementToBeNotPresent(
+    page: Page,
+    element: Locator,
+    timeout: number = 30000
+): Promise<void> {
+    try {
+        // Wait for the element to be detached from the DOM
+        await element.waitFor({ state: 'detached', timeout });
+    } catch (error) {
+        // Throw an error if waiting for the element to be detached fails
+        throw new Error(`Element is still present after waiting for ${timeout} milliseconds: ${error.message}`);
+    }
+}
+

@@ -4,7 +4,9 @@ import {
     waitForElementToBeVisible,
     typeInInputField,
     assertElementText,
-    navigateToUrl, clickElement
+    navigateToUrl, clickElement,
+    waitForPageLoad,
+    waitForElementToBeNotPresent
 } from '../utils/ui-utils';
 
 export class HomePage extends BasePage {
@@ -20,6 +22,7 @@ export class HomePage extends BasePage {
     readonly inputAnswer: Locator;
     readonly buttonCapSubmit: Locator;
     readonly captchaText: Locator;
+    readonly loaderImage: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -35,6 +38,7 @@ export class HomePage extends BasePage {
         this.inputAnswer = page.getByRole('button', { name: 'answer' });
         this.buttonCapSubmit = page.locator('#capSubmit');
         this.captchaText = page.locator('div#captcha-text');
+        this.loaderImage= page.locator('div.sc-hnmNqB.cAOoWx svg')
     }
 
     /**
@@ -55,6 +59,8 @@ export class HomePage extends BasePage {
      */
     async navigateToGamdomSite(): Promise<void> {
         await navigateToUrl(this.page, 'https://gamdom.com/');
+        await waitForElementToBeNotPresent(this.page, this.loaderImage)
+        await waitForPageLoad(this.page)
     }
 
 
@@ -66,6 +72,8 @@ export class HomePage extends BasePage {
     async searchForGame(query: string): Promise<void> {
         await typeInInputField(this.searchInput, query, 100);
         await this.searchInput.click(); // Click to ensure the search is executed
+        await waitForElementToBeNotPresent(this.page, this.loaderImage)
+        await waitForPageLoad(this.page)
     }
 
     /**
@@ -73,6 +81,8 @@ export class HomePage extends BasePage {
      */
     async NavigateToSportsBetting() {
         await clickElement(this.page, 'a[href="/sports"] >> text=Visit Sportbook');
+        await waitForElementToBeNotPresent(this.page, this.loaderImage)
+        await waitForPageLoad(this.page)
     }
 
 
@@ -83,6 +93,8 @@ export class HomePage extends BasePage {
     async navigateToCasinoPage(): Promise<void> {
         try {
             await this.casinoLink.click();
+            await waitForElementToBeNotPresent(this.page, this.loaderImage)
+            await waitForPageLoad(this.page)
         } catch (error) {
             throw new Error(`Failed to navigate to the Casino page: ${error.message}`);
         }
@@ -100,7 +112,7 @@ export class HomePage extends BasePage {
      * Interacts with the WebGL element by waiting for it to be attached and then clicking it.
      */
     async interactWithWebglElement(): Promise<void> {
-        await this.webglElement.waitFor({ state: 'attached', timeout: 90000 });
+        await this.webglElement.waitFor({ state: 'attached', timeout: 120000 });
         await this.webglElement.click();
     }
 
