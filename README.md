@@ -95,7 +95,7 @@ Please find successful test videos and AllRuns Screenshot under following direct
   **TestCase2:Should prevent bet placement while logged-out**
 ![Should-prevent-bet-placement-while-logged-out](https://github.com/user-attachments/assets/f00771e2-b30b-4912-8008-52d638edee98)
 
-  **TestCase3:Verify CAPTCHA is present but hidden on SignIn**
+  **TestCase3: Verify CAPTCHA is Present but Hidden During Automated or Non-Human Sign-In**
 ![Verify-CAPTCHA-is-present-but-hidden-on-SignIn](https://github.com/user-attachments/assets/b6fa7e28-a832-4642-be6a-76bc0630c5bf)
 
   **TestCase4:Verify Game Search functionality works**
